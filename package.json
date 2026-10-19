@@ -1,0 +1,12 @@
+{
+  "name": "sunny-spiritual-soul",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "check": "node --check public/app.js && node --check public/details.js && node --check scripts/build.mjs && node --check scripts/serve.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
