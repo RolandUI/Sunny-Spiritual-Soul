@@ -15,6 +15,13 @@ Forrás: a felhasználó által 2026. október 19-én csatolt hat kép. Az erede
 
 Az időpontokat tartalmazó kép arculati referencia; a rajta szereplő dátumokat a weboldal nem közli foglalható időpontként. A konzultáció és csomagok rövid leírásának forrása az átadott anyag. A logót nem módosítottuk és nem helyettesítettük generált változattal.
 
+### Eredeti logófájl
+
+- Forrás: az átadott, átlátszó, 3375 × 3375 px-es logó: `references/brand/logo-original.png`.
+- `public/assets/logo.webp`: a teljes logó 1200 × 999 px-es, veszteségmentesen tömörített webes exportja. Csak az üres, átlátszó külső területet vágtuk le és Lanczos méretezést alkalmaztunk; a rajz, színek, betűk és arányok változatlanok.
+- `public/assets/favicon.png`: a teljes logó arányosan kicsinyítve, 64 × 64 px-es petrol (`#154653`) alapon, hogy világos böngészőfelületen is látható maradjon.
+- A teljes logó a nyitóképen és a láblécben szerepel. A lebegő menü napikonja továbbra is navigációs és görgetési jelölés.
+
 ## Szolgáltatások és mentorálás tartalmi forrásai
 
 A felhasználó által átadott 19 képes tájékoztató eredetije a `references/content/` könyvtárban található. Ezek forrásanyagok; a weboldal kereshető HTML-szöveget használ, a képek nem kerülnek a `dist/` könyvtárba.
@@ -38,6 +45,10 @@ A felhasználó által átadott 19 képes tájékoztató eredetije a `references
 | `crystal-massage.png` | Kristálymasszázs eszközei és menete |
 | `reincarnation.png` | Reinkarnációs szemléletű meditáció és lezáró beszélgetés |
 | `space-cleansing.png` | Tértisztítás menete és a résztvevőnek átadott eszközök |
+| `service-fees.png` | A különálló szolgáltatások díjai, négyalkalmas ajánlatai és időtartamai |
+| `family-sound-bath-fees.png` | Egyéni, páros és családi hangfürdők teljes díjsora, időtartamai, díjmentes kutyás részvétel és Reiki kutyáknak |
+
+Az utolsó két árlista a külön átadott szolgáltatási és családi díjtájékoztató. Az eredeti képeket változatlanul őrizzük. A négyalkalmas konzultáció 46 000 Ft-os díja külön ajánlat a 66 000 Ft-os, összetett Hold mentorálástól.
 
 A posztszövegek rövidített, webre szerkesztett változatban szerepelnek. Az árak, részletek, óraszámok, létszámok, helyszínek és feltételek az átadott anyagból származnak. A testi gyógyhatást, traumagyógyítást, méregtelenítést vagy garantált eredményt ígérő mondatok helyett a módszer menetét és a személyes élményt írjuk le; a spirituális fogalmak spirituális szemléletként jelennek meg.
 
@@ -46,10 +57,9 @@ A MotiBro-célpont forrása az [Azura Egészségközpont hivatalos oldalának](h
 ## Szonja fotója
 
 - Forrás: a felhasználó által megadott [Farkas Krisztián Foto/Video és Sunny Spiritual Soul közös Instagram-posztja](https://www.instagram.com/farkaskrisztianfotovideo/p/DadG85wgoF_/), a lapozható poszt első képe. Hozzáférés: 2026. október 19.
-- Fotós: Farkas Krisztián Foto/Video. Szonja hangtálakkal és kutyával, szabadtéri környezetben.
+- Fotós: Farkas Krisztián Foto/Video. Vetor Szonja Mercédesz hangtálakkal és kutyával, szabadtéri környezetben.
 - `public/assets/szonja.webp`: a letöltött, változatlan 1440 × 960 px-es WebP.
 - `public/assets/szonja-720.webp`: 720 × 480 px-es változat, Lanczos méretezés, 88-as WebP-minőség.
-- Helyi letöltés: `C:/Users/soosr/Downloads/729579056_18208203856350987_2642884179909875142_n.webp`.
 - Mindkét változat megőrzi a teljes 3:2 kompozíciót és a fotós vízjelét; nincs retus vagy generált képrészlet.
 
 ## Közösségi elérhetőségek
@@ -60,12 +70,12 @@ A MotiBro-célpont forrása az [Azura Egészségközpont hivatalos oldalának](h
 
 ## Arculati illusztrációk
 
-Eszköz: beépített ImageGen. A felhasználó grafikáihoz igazított illusztrációk, nem helyszínfotók. Az eredeti PNG-k könyvtára: `C:/Users/soosr/.codex/generated_images/01a14937-951e-7c33-baf5-47e6eb3501df/`.
+ImageGen segítségével készült, az átadott grafikákhoz igazított illusztrációk, nem helyszínfotók.
 
-| Kép | Eredeti PNG | Webes exportok |
-| --- | --- | --- |
-| Petrol hullám | `exec-9f1b70e3-332d-48b7-b859-bd0c2bbe95e6.png` | `public/assets/water-960.webp`, `water-1536.webp` |
-| Mészkőszegély | `exec-5d12f501-4f5d-4c62-aea9-101ffcaf3138.png` | `public/assets/limestone-600.webp`, `limestone-1200.webp` |
+| Kép | Webes exportok |
+| --- | --- |
+| Petrol hullám | `public/assets/water-960.webp`, `water-1536.webp` |
+| Mészkőszegély | `public/assets/limestone-600.webp`, `limestone-1200.webp` |
 
 WebP-export: Lanczos méretezés, 88-as minőség, a mészkő átlátszóságának megőrzésével. Az export csak méretezést és tömörítést végez.
 

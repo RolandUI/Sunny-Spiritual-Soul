@@ -8,6 +8,7 @@
 - Kövesd a meglévő elnevezéseket, kódstílust, nullkezelést, aszinkron és hibakezelési mintákat.
 - Használd újra a meglévő komponenseket. Új függőséget vagy absztrakciót csak konkrét szükséglethez vezess be.
 - Statikus, Cloudflare Pages-en kiszolgálható oldalt készíts. Ne vezess be szerveroldali futtatást; a publikálható kimenet a `dist/` könyvtár.
+- A repóba és a publikálható kimenetbe ne kerüljön géphez kötött elérési út, fejlesztői felhasználónév, ideiglenes fájlazonosító, munkamenetadat vagy helyi konfiguráció. Dokumentációban csak repóhoz viszonyított útvonalat vagy nyilvános forráslinket használj.
 
 ## Felület és tartalom
 

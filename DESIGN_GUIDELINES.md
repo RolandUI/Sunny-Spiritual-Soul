@@ -12,6 +12,7 @@ A felhasználó által átadott arculati képek a vizuális források: `referenc
 - Vékony, ritkán elhelyezett organikus kontúrvonalak használhatók háttérként.
 - Ne használj napraforgókat, boltíves kollázsokat, barack–lila kártyákat, elforgatott fotókereteket, lebegő címkéket vagy pusztán dekorációt vezérlő gombokat.
 - Magyar, tegeződő szöveg. A bemutatkozás egyes szám első személyben.
+- A teljes név: **Vetor Szonja Mercédesz**. A névvel azonosító feliratokban, metaadatokban és képleírásokban ezt használd; a személyes bemutatkozás maradhat „Szonja vagyok.”.
 - Ne használj szlogenként általános spirituális ígéreteket. A szolgáltatást és a kapcsolatfelvétel módját mondd el.
 - Minden mondat adjon konkrét információt, segítsen választani, vagy tisztázza a következő lépést. Ne magyarázd a magától érthető kezelést; ne ismételd meg a kategórianevet külön dekoratív panelen. Kerüld a „Válaszd ki, ami közel áll hozzád” típusú felszólításokat.
 
@@ -45,8 +46,8 @@ Normál szöveg kontrasztja legalább 4,5:1; nagy szövegé és funkcionális je
 - Kezelőfelület és rövid címkék: **Manrope**, 400–500; 0,8125–0,875rem.
 - Mindhárom betűcsalád helyi WOFF2, latin és latin-ext részhalmazokkal, `font-display: swap`.
 - Szakaszcím: `clamp(2.4rem,5.3vw,5rem)`. Szolgáltatáscím: `clamp(1.625rem,2.7vw,2.5rem)`.
-- A **Sunny Spiritual Soul egyetlen, egyenrangú márkanév**. Mindhárom szó betűcsaládja, mérete, súlya, színe és betűköze azonos; a Sunny nem lehet nagyobb vagy hangsúlyosabb.
-- A név 900 px-től egy sorban, kisebb nézetben három sorban jelenjen meg. Közös betűméret: mobilon `clamp(2.75rem,11vw,4.5rem)`, asztalon `clamp(3rem,6.6vw,6rem)`. Fekvő mobilon elférhet egy sorban, azonos szóformázással.
+- A **Sunny Spiritual Soul egyetlen, egyenrangú márkanév**. Ne emeld ki külön a Sunny szót. A nyitóképen és a láblécben az eredeti, teljes logót használd (`public/assets/logo.webp`), saját színeivel és változatlan arányaival. A márkanevet ne ismételd mellette nagy szöveges feliratként.
+- A nyitóképi logó szélessége legfeljebb 30rem, a nézetmagasság 58%-a és a tartalmi szélesség közül a legkisebb. A láblécben apró, 3rem széles márkajelzésként jelenjen meg, legalább 44 px magas kattintható területtel. Petrol háttéren jelenjen meg; ne kapjon keretet, árnyékot, színszűrőt vagy animált torzítást. Az eredeti átlátszó PNG: `references/brand/logo-original.png`.
 - Hosszú címeknél szabályos magyar feltételes elválasztás használható.
 - Térközskála: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 px, rem tokenekben.
 - Tartalomszélesség legfeljebb 1160 px. Oldalmargó mobilon 24 px, 360 px alatt 20 px, 700 px-től 48 px, 1200 px-től 80 px.
@@ -63,6 +64,7 @@ Normál szöveg kontrasztja legalább 4,5:1; nagy szövegé és funkcionális je
 - A színes mezők sorrendje petrol, kékes petrol, zsálya. Az első kettőn törtfehér, a zsályán petrol szöveg legyen.
 - A csomagok alkalomszáma és felirata egy vízszintesen és függőlegesen középre rendezett egység legyen, 8 px köztes térrel. A szám sorköze 1. Minden nézetben azonos bal és jobb belső térközt használj; a közös szövegtengely a teljes színes mező geometriai közepére essen, külön oldalirányú korrekció nélkül.
 - Árnyék csak a lebegő navigáción szükséges. A tartalmi elemek lapos, színezett felületek.
+- A leírásokon belüli tagolást térköz, tipográfia és igazítás adja. Ne tegyél elválasztóvonalat az árak, módszerleírások vagy alkalomadatok köré és közé; ne váltsd ki őket újabb keretekkel, kártyákkal vagy váltakozó sávszínekkel.
 - A gombok és szöveges linkek ne kapjanak ismétlődő dekoratív nyilat. A platformnév és logó azonosítja a közösségi célpontot; az új lapot a hozzáférhető név jelzi. Felfelé mutató nyíl csak az oldal tetejére visszavezető lábléchivatkozáson szerepeljen.
 
 ### Újrahasználandó elemek
@@ -82,7 +84,7 @@ A megvalósítás közös tokenjei és komponensstílusai a `public/styles.css` 
 
 ## Főoldal
 
-1. **Nyitókép:** teljes szélességű petrol vízgrafika. Középre rendezett fehér tipográfia a kép nyugodt felső részén; a hullám az alsó részt tölti ki. Szonja neve, a márkanév és a tevékenységek szerepelnek. Nincs felső menü vagy további gombsor.
+1. **Nyitókép:** teljes szélességű petrol vízgrafika. A nyugodt felső részen középre rendezett eredeti logó; alatta Vetor Szonja Mercédesz neve, a holisztikus tanácsadás és a tevékenységek rövid felsorolása. A logó a `h1` része, „Sunny Spiritual Soul” képleírással. A hullám az alsó részt tölti ki, a szöveg mögött sötét, nyugodt felület maradjon. Nincs felső menü vagy további gombsor.
 2. **Rólam:** halvány zsálya háttéren közös, lekerekített törtfehér panel, valódi fotóval és rövid bemutatkozással. 900 px-től kép balra, szöveg jobbra; kisebb nézetben egymás alatt. A fotó teljes, 3:2 arányú kompozíciója és eredeti vízjele maradjon meg; alatta ne ismétlődjön a név külön képaláírásként. A szakaszcím „Szonja vagyok.”, a menüpont „Rólam”. Az Alkalmak hivatkozás mellett külön, 48 × 48 px-es kör alakú Instagram- és Facebook-link legyen.
 3. **Alkalmak:** petrol felület, finom kontúrvonalak. Három témablokk: Hangfürdők; Reiki és érintés; Önismeret és rítusok. Asztalon balra színes, íves csoportcím, jobbra közös törtfehér panel a szolgáltatások neveivel. 900 px alatt a csoportcím a lista fölé kerül. Minden szolgáltatás neve eleve látszik; a teljes sor helyben nyitja a hozzá tartozó leírást. Nincs külön választóképernyő, oldalsó szolgáltatásmenü vagy modal.
 4. **Csomagok:** zsálya háttéren három vízszintes sor. Balra színes, íves alkalomszám; jobbra világos, lekerekített panelben név, rövid leírás, közös munka időtartama, teljes díj és részletfizetés. Hold – 4 alkalom; Föld – 8 alkalom; Pandora – 12 alkalom. Mobilon is maradjon egymás mellett a számmező és a tartalom, nagyított szövegnél egymás alá kerülhetnek. Alattuk két helyben nyitható sor: „A mentorálás menete” és „Részvétel és fizetés”, majd egy közös egyeztetési link. A mészkő az alsó szegélyen maradjon, ne fedjen szöveget.
@@ -90,14 +92,14 @@ A megvalósítás közös tokenjei és komponensstílusai a `public/styles.css` 
 
 A szolgáltatásnevek natív lenyitó vezérlők, a csomagsorok szöveges tartalmak. A csomagsor ne kapjon kattinthatóságot sugalló hoverhatást. Ne mutass árlistát vagy eseménynaptárt igazolt, publikálásra szánt adatok nélkül.
 
-A lábléc 700 px-től három oszlopból áll: balra a márkanév, középen „Vetor Szonja · Budapest”, jobbra az évszám. A két szélső oszlop egyforma széles legyen, hogy a középső szöveg az oldal középvonalára kerüljön. Mobilon és nagyított szövegnél a három elem egymás alatt, középre igazítva jelenjen meg.
+A lábléc 700 px-től három oszlopból áll: balra a kezdőlapra vezető eredeti logó, középen „Vetor Szonja Mercédesz · Budapest”, jobbra az évszám. A két szélső oszlop egyforma széles legyen, hogy a középső szöveg az oldal középvonalára kerüljön. Mobilon és nagyított szövegnél a három elem egymás alatt, középre igazítva jelenjen meg. A logólink hozzáférhető neve jelezze a márkát és a visszalépés célját.
 
 ## Helyben nyíló részletek
 
 - Minden leírás, díj és feltétel a főoldal statikus HTML-jében legyen. Ne tölts be tartalmat kattintáskor; ne legyen betöltőállapot, felugró ablak vagy külön részletnézet.
 - A szolgáltatások egyetlen szintű, natív `details` / `summary` sorok. A három témacsoportban 5, 3 és 5 szolgáltatás látható; a csoportokat nem kell előbb lenyitni.
 - A szolgáltatások közül egyszerre egy leírás lehet nyitva. A `name` attribútum JavaScript nélkül is biztosítsa ezt. A csomagok két részletező sora külön csoportot alkot.
-- A sor megnyitása vagy bezárása ne navigáljon, és ne adjon új bejegyzést az előzményekhez. Ha a korábbi leírás összehúzása elmozdítaná a kiválasztott címet, a görgetés kompenzálja az eltérést. A fókusz maradjon a működtetett fejlécen.
+- A sor megnyitása vagy bezárása ne navigáljon, és ne adjon új bejegyzést az előzményekhez. Nyitáskor a fejléc a lenyitással együtt görgessen a nézet tetejéhez, a közös felső görgetési térköz megtartásával. Közben kompenzálja a korábbi leírás összehúzódását. Bezáráskor maradjon a fejléc a helyén. A kézi görgetés vagy új billentyűzetes művelet szakítsa meg az automatikus odagörgetést. A fókusz maradjon a működtetett fejlécen; csökkentett mozgásnál az igazítás azonnali legyen.
 - A teljes fejléc aktiválható egérrel, érintéssel, Enterrel és Szóközzel. Plusz/mínusz jel mutassa a nyitási állapotot; a billentyűzetfókusz látszódjon.
 - A szolgáltatásnevek Lora betűvel, 1,125rem méretben szerepeljenek. A csoportcím Cinzel Decorative, `clamp(1.625rem,2.5vw,2rem)`. Címsorhierarchia: szakasz `h2`, témacsoport `h3`, szolgáltatás `h4`.
 - A zárt sor törtfehér. A nyitott sor fejléce és leírása egységes, halvány zsályás felület (`--color-expanded`), petrol szöveggel; ne legyen külön sötétebb fejléccsík. A nyitott állapotot a színkülönbség mellett a mínuszjel és a megjelenő tartalom jelzi. A csoport külső lekerekítései maradjanak meg.
@@ -107,6 +109,8 @@ A lábléc 700 px-től három oszlopból áll: balra a márkanév, középen „
 - Csak az egész oldal görgethető; ne legyen belső görgetődoboz vagy lezárt háttér. Az animáció alatt is maradjon használható a görgetés, a billentyűzet és a hivatkozások.
 - Minden szolgáltatás és csomag kapjon állandó, olvasható horgonyt. A közvetlen link a megfelelő leírást nyissa meg; a belső linkek és a böngészős Vissza/Előre a szokásos módon működjenek.
 - A csomagok ára és részletfizetése mindig látszik. A mentorálás felépítése, gyakorisága, otthoni gyakorlatai és bővítése egy közös lenyitásban, rövid alcímek alatt szerepeljen. A részvétel és fizetés külön lenyitást kapjon. Nincs egymásba ágyazott accordion.
+- Az alkalmak díjai a saját lenyitott leírásukban, a kapcsolatfelvétel előtt jelenjenek meg. A `.session-prices` leírólista bal oszlopa az időtartam vagy részvételi változat, jobb oszlopa az ár. Az összeget és a pénznemet tartsd együtt; nagyított szövegnél a két oszlop egymás alá kerülhet. A sorok között 16 px, a családi változatok csoportjai között 32 px szabad tér legyen, elválasztóvonalak, újabb lenyitó és külön árkártyák nélkül. A módszerleírásokat, alkalomadatokat és díjakat 32 px külső térköz tagolja.
+- A négyalkalmas szolgáltatásdíj és a komplex mentorálás ára külön ajánlat. A konzultáció négyalkalmas díját ne nevezd Hold csomagnak. Az árakat, a „Ft/fő” és „Ft-tól” feltételeket kizárólag az átadott árlisták alapján add meg.
 - A korábbi `/szolgaltatasok/` és `/csomagok/` címek a főoldal megfelelő részéhez vezessenek, a meglévő horgony megtartásával. A tartalomnak egyetlen szerkesztendő forrása legyen.
 
 ## Tartalombővítés
@@ -125,6 +129,8 @@ A lábléc 700 px-től három oszlopból áll: balra a márkanév, középen „
 
 - Az alsó, középre rögzített kapszulamenü mind az öt fő fejezetet tartalmazza: kezdés, Rólam, Alkalmak, Csomagok, Kapcsolat. A szolgáltatások alkategóriái az Alkalmak szakaszban szerepeljenek.
 - Törtfehér felület, petrol szöveg, finom árnyék. Az aktív pont petrol hátterű és `aria-current="location"` attribútumot kap.
+- Az aktív háttér egyetlen, közös petrol kapszula legyen: 300 ms alatt (`--duration-nav`, `--ease`) csússzon át az új menüpontra, annak szélességéhez és magasságához igazodva. Ne tűnjön el vagy villanjon fel váltáskor. Gyors irányváltásnál az aktuális helyzetből folytassa a mozgást. Első megjelenéskor és csökkentett mozgásnál azonnal kerüljön a helyére; átméretezés és betűbetöltés után is kövesse a gomb méretét. A háttér ne takarja a szöveget vagy a billentyűzetfókuszt.
+- Menüpont aktiválásakor a háttér közvetlenül a választott célra mozogjon. Az odagörgetés közben érintett köztes szakaszok ne indítsák újra az animációját. A cél elérésekor vagy a görgetés kézi megszakításakor térjen vissza az aktuális szakasz követéséhez; új menüpont aktiválása azonnal váltsa le a korábbi célt. A horgony, az előzmények és a billentyűzetes navigáció natív működése maradjon meg.
 - A napikon külső vonala a görgetés előrehaladását jelöli.
 - Mobilon legalább 16 px, asztalon 24 px távolság a nézet aljától; a safe area értékét is vedd figyelembe.
 - Természetes görgetés; nincs wheel/touch felülírás, kötelező lapozás vagy hosszan rögzített szakasz. A görgetés leírásnyitás közben is maradjon természetes.

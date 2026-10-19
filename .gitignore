@@ -1,3 +1,13 @@
 dist/
 node_modules/
 .preview/
+.env
+.env.*
+!.env.example
+*.local
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.codex/

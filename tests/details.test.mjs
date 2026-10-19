@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 
 const script = await readFile(new URL('../public/details.js',import.meta.url),'utf8');
 
-function setupDetails({ open = false, shift = 0, duration = 0 } = {}) {
+function setupDetails({ open = false, shift = 0, duration = 0, padding = 32 } = {}) {
   const scrolls = [];
   const frames = new Map();
   const events = new Map();
@@ -31,7 +31,7 @@ function setupDetails({ open = false, shift = 0, duration = 0 } = {}) {
   const window = {
     scrollY: 0,
     scrollBy: options => { scrolls.push(options); window.scrollY += options.top; },
-    getComputedStyle: () => ({ transitionDuration: `${duration / 1000}s` }),
+    getComputedStyle: () => ({ transitionDuration: `${duration / 1000}s`,scrollPaddingTop: `${padding}px` }),
     performance: { now: () => now },
     requestAnimationFrame: callback => { frames.set(++frameId,callback); return frameId; },
     cancelAnimationFrame: id => frames.delete(id),
@@ -63,15 +63,22 @@ function setupDetails({ open = false, shift = 0, duration = 0 } = {}) {
   };
 }
 
-test('a helyben nyitás megtartja a címet és a billentyűzetfókuszt', () => {
-  const page = setupDetails({ shift: -360 });
+test('a helyben nyitás felülre igazítja a címet és megtartja a billentyűzetfókuszt', () => {
+  const page = setupDetails({ shift: -180 });
   const event = page.click();
   assert.equal(page.detail.open,true);
   assert.equal(event.defaultPrevented,true);
   assert.equal(page.focus.preventScroll,true);
   assert.equal(page.scrolls.length,1);
-  assert.equal(page.scrolls[0].top,-360);
+  assert.equal(page.scrolls[0].top,88);
   assert.equal(page.scrolls[0].behavior,'instant');
+  assert.equal(page.top,32);
+});
+
+test('a felső térközt az oldal közös görgetési stílusából veszi', () => {
+  const page = setupDetails({ padding: 64 });
+  page.click();
+  assert.equal(page.top,64);
 });
 
 test('az ismételt kattintás bezár, elmozdulás nélkül nem görget', () => {
@@ -87,7 +94,7 @@ test('a billentyűzet által kiváltott kattintás is ugyanazt a fejlécet műk�
   page.click({ detail: 0 });
   assert.equal(page.detail.open,true);
   assert.equal(page.focus.preventScroll,true);
-  assert.equal(page.scrolls.length,0);
+  assert.equal(page.top,32);
 });
 
 test('a belső link előbb kinyitja a cél tartalmát, a navigáció natív marad', () => {
@@ -117,27 +124,38 @@ test('a nem kapcsolódó kattintás és az ismeretlen horgony hatástalan', () =
   assert.equal(page.detail.open,false);
 });
 
-test('az animáció közbeni elmozdulást követi, a végén nem hagy képkockaciklust', () => {
+test('nyitás közben követi az összehúzódó előző elemet és fokozatosan felülre görget', () => {
   const page = setupDetails({ duration: 360 });
   page.click();
   assert.equal(page.frames.size,1);
   assert.ok(page.classes.has('is-disclosing'));
+  assert.equal(page.top,300);
+  let previousTop = page.top;
   for (const [time,shift] of [[120,-80],[240,-150],[360,-180]]) {
     page.moveLayout(shift); page.frame(time);
-    assert.equal(page.top,300);
+    assert.ok(page.top < previousTop);
+    assert.ok(page.top >= 32);
+    previousTop = page.top;
   }
-  assert.equal(page.window.scrollY,-180);
+  assert.equal(page.top,32);
+  assert.equal(page.window.scrollY,88);
   assert.equal(page.frames.size,0);
   assert.equal(page.classes.has('is-disclosing'),false);
 });
 
-test('a kézi görgetést nem vonja vissza a magasságváltozás kompenzálása', () => {
-  const page = setupDetails({ duration: 360 });
-  page.click();
-  page.window.scrollY += 100;
-  page.moveLayout(-80); page.frame(120);
-  assert.equal(page.top,200);
-  assert.equal(page.window.scrollY,20);
+test('a kézi művelet megszakítja az odagörgetést, a magasságváltozás nem írja felül', () => {
+  for (const input of ['wheel','touchmove','pointerdown','keydown']) {
+    const page = setupDetails({ duration: 360 });
+    page.click();
+    page.fire(input);
+    page.window.scrollY += 100;
+    page.moveLayout(-80); page.frame(120);
+    assert.equal(page.top,200);
+    assert.equal(page.window.scrollY,20);
+    page.frame(360);
+    assert.equal(page.top,200);
+    assert.equal(page.frames.size,0);
+  }
 });
 
 test('gyors újrakattintásnál csak a legújabb átmenetet követi', () => {
@@ -149,6 +167,7 @@ test('gyors újrakattintásnál csak a legújabb átmenetet követi', () => {
   assert.equal(page.detail.open,true);
   assert.equal(page.frames.size,1);
   page.frame(480);
+  assert.equal(page.top,32);
   assert.equal(page.frames.size,0);
   assert.equal(page.classes.has('is-disclosing'),false);
 });
@@ -156,7 +175,7 @@ test('gyors újrakattintásnál csak a legújabb átmenetet követi', () => {
 test('csökkentett mozgásnál és animációt nem támogató böngészőben nincs ciklus', () => {
   const page = setupDetails({ duration: 0,shift: -180 });
   page.click();
-  assert.equal(page.top,300);
+  assert.equal(page.top,32);
   assert.equal(page.frames.size,0);
   assert.equal(page.classes.has('is-disclosing'),false);
 });

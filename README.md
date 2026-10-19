@@ -13,7 +13,7 @@ npm test
 npm run build
 ```
 
-Előnézet: http://localhost:4173. Másik port: `PORT` környezeti változó.
+A fejlesztői szerver az induláskor kiírja az előnézet címét. A port a `PORT` környezeti változóval állítható.
 
 ## Cloudflare Pages
 

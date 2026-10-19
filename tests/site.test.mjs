@@ -19,9 +19,13 @@ function setupPage({ reducedMotion = false, height = 900, width = 1440, fontSize
     }; },
   });
   const classes = new Set();
+  const navClasses = new Set();
+  const nav = Object.assign(element(),{ classList: { add: name => navClasses.add(name) } });
   const root = Object.assign(element(),{ scrollHeight: 4000,classList: { toggle: (name,active) => active ? classes.add(name) : classes.delete(name) } });
   const sections = detailPage ? {} : { '.hero': element(0),'.about': element(900),'.offerings': element(1600,1000),'.packages': element(2600,700),'.contact': element(3300,700) };
-  const links = ['kezdolap','rolam','alkalmak','csomagok','kapcsolat'].map(id => element(0,44,`${detailPage ? '/' : ''}#${id}`));
+  const links = ['kezdolap','rolam','alkalmak','csomagok','kapcsolat'].map((id,index) => Object.assign(element(0,44,`${detailPage ? '/' : ''}#${id}`),{
+    offsetLeft: [8,60,154,258,376][index],offsetTop: 8,offsetWidth: [48,90,100,114,112][index],offsetHeight: 48,
+  }));
   if (detailPage) links.find(link => link.getAttribute('href') === `/#${chapter}`).setAttribute('aria-current','location');
   const details = Object.fromEntries(['reiki','csoportos-hangfurdo','folyamat'].map(id => [id,{
     tagName: 'DETAILS',open: false,scrollCount: 0,
@@ -45,15 +49,20 @@ function setupPage({ reducedMotion = false, height = 900, width = 1440, fontSize
   };
   const document = {
     documentElement: root,body: { dataset: { homeSection } },hidden: false,
-    querySelector: selector => selector === '.not-found a' ? element(0,44,`${basePath}/#${homeSection}`) : sections[selector],
+    querySelector: selector => selector === '.chapter-nav' ? nav : selector === '.not-found a' ? element(0,44,`${basePath}/#${homeSection}`) : sections[selector],
     querySelectorAll: selector => selector === '.chapter-nav a' ? links : [],
     getElementById: id => details[id] ?? null,
     addEventListener: (name,listener) => events.set(name,listener),
   };
   runInNewContext(app,{ window,document });
   return {
-    classes,root,sections,links,details,frames,window,document,
-    fire: name => events.get(name)(),
+    classes,root,nav,navClasses,sections,links,details,frames,window,document,
+    fire: (name,event) => events.get(name)(event),
+    clickNav(index,options = {}) {
+      const event = { button: 0,defaultPrevented: false,target: { closest: () => links[index] ?? null },...options };
+      events.get('click')(event);
+      return event;
+    },
     setReducedMotion(value) { preference.matches = value; preferenceChange(); },
     flush() { const callbacks = [...frames.values()]; frames.clear(); callbacks.forEach(callback => callback()); },
     active() { return links.filter(link => link.getAttribute('aria-current') === 'location').map(link => link.getAttribute('href')); },
@@ -153,6 +162,106 @@ test('magas nézetben is a kapcsolat aktív az oldal aljára érve', () => {
   page.sections['.offerings'].bounds.top = -600;
   page.window.scrollY = 2200; page.flush();
   assert.deepEqual(page.active(),['#kapcsolat']);
+});
+
+test('a közös navigációs háttér az aktív menüpont helyét és méretét követi', () => {
+  const page = setupPage(); page.flush();
+  assert.ok(page.navClasses.has('has-indicator'));
+  assert.equal(page.nav.properties.get('--nav-x'),'8px');
+  assert.equal(page.nav.properties.get('--nav-width'),'48px');
+  page.sections['.offerings'].bounds.top = 100; page.fire('scroll'); page.flush();
+  assert.deepEqual(page.active(),['#alkalmak']);
+  assert.equal(page.nav.properties.get('--nav-x'),'154px');
+  assert.equal(page.nav.properties.get('--nav-y'),'8px');
+  assert.equal(page.nav.properties.get('--nav-width'),'100px');
+  assert.equal(page.nav.properties.get('--nav-height'),'48px');
+  page.sections['.offerings'].bounds.top = 1600; page.fire('scroll'); page.flush();
+  assert.equal(page.nav.properties.get('--nav-x'),'8px');
+  assert.equal(page.frames.size,0);
+});
+
+test('menüpontra kattintva a háttér közvetlenül a célhoz mozog, a köztes fejezetek nem térítik el', () => {
+  const page = setupPage();
+  page.sections['.about'].bounds.top = 100; page.flush();
+  assert.deepEqual(page.active(),['#rolam']);
+  page.clickNav(4); page.flush();
+  assert.deepEqual(page.active(),['#kapcsolat']);
+  assert.equal(page.nav.properties.get('--nav-x'),'376px');
+  page.window.location.hash = '#kapcsolat'; page.fire('hashchange'); page.flush();
+  for (const selector of ['.offerings','.packages','.contact']) {
+    page.sections[selector].bounds.top = 100; page.fire('scroll'); page.flush();
+    assert.deepEqual(page.active(),['#kapcsolat']);
+    assert.equal(page.nav.properties.get('--nav-x'),'376px');
+  }
+  page.sections['.contact'].bounds.top = 1400; page.fire('scroll'); page.flush();
+  assert.deepEqual(page.active(),['#csomagok']);
+  assert.equal(page.frames.size,0);
+});
+
+test('gyors újabb aktiválás azonnal lecseréli a navigáció célját', () => {
+  const page = setupPage();
+  page.sections['.about'].bounds.top = 100; page.flush();
+  page.clickNav(4); page.flush();
+  page.sections['.offerings'].bounds.top = 100; page.fire('scroll'); page.flush();
+  page.clickNav(1,{ detail: 0 }); page.flush();
+  assert.deepEqual(page.active(),['#rolam']);
+  assert.equal(page.nav.properties.get('--nav-x'),'60px');
+  page.fire('scroll'); page.flush();
+  assert.deepEqual(page.active(),['#rolam']);
+});
+
+test('kézi görgetés vagy új interakció visszaadja a menüt az aktuális szakasznak', () => {
+  for (const event of ['wheel','touchmove','pointerdown','keydown']) {
+    const page = setupPage(); page.flush();
+    page.clickNav(4); page.flush();
+    page.sections['.offerings'].bounds.top = 100; page.fire('scroll'); page.flush();
+    assert.deepEqual(page.active(),['#kapcsolat']);
+    page.fire(event); page.flush();
+    assert.deepEqual(page.active(),['#alkalmak']);
+    assert.equal(page.nav.properties.get('--nav-x'),'154px');
+  }
+});
+
+test('másik horgonyra visszatérés feloldja a korábbi menücél követését', () => {
+  const page = setupPage(); page.flush();
+  page.clickNav(4); page.flush();
+  page.sections['.about'].bounds.top = 100;
+  page.window.location.hash = '#rolam'; page.fire('hashchange'); page.flush();
+  assert.deepEqual(page.active(),['#rolam']);
+});
+
+test('a menükezelés megőrzi a natív horgonyokat és a módosított kattintásokat', () => {
+  const page = setupPage(); page.flush();
+  for (const options of [{ ctrlKey: true },{ metaKey: true },{ shiftKey: true },{ altKey: true },{ button: 1 },{ defaultPrevented: true }]) {
+    page.clickNav(4,options); page.flush();
+    assert.deepEqual(page.active(),['#kezdolap']);
+  }
+  page.clickNav(-1); page.flush();
+  assert.deepEqual(page.active(),['#kezdolap']);
+  const event = page.clickNav(4); page.flush();
+  assert.deepEqual(page.active(),['#kapcsolat']);
+  assert.equal(event.defaultPrevented,false);
+  assert.equal(page.window.location.hash,'');
+});
+
+test('átméretezéskor azonos fejezetnél is újraigazítja a navigációs hátteret', () => {
+  const page = setupPage(); page.flush();
+  Object.assign(page.links[0],{ offsetLeft: 4,offsetTop: 12,offsetWidth: 240,offsetHeight: 60 });
+  page.fire('resize'); page.flush();
+  assert.deepEqual(page.active(),['#kezdolap']);
+  assert.equal(page.nav.properties.get('--nav-x'),'4px');
+  assert.equal(page.nav.properties.get('--nav-y'),'12px');
+  assert.equal(page.nav.properties.get('--nav-width'),'240px');
+  assert.equal(page.nav.properties.get('--nav-height'),'60px');
+});
+
+test('csökkentett mozgásnál is az aktív menüpontra igazítja a közös hátteret', () => {
+  const page = setupPage({ reducedMotion: true });
+  page.sections['.packages'].bounds.top = 100; page.flush();
+  assert.deepEqual(page.active(),['#csomagok']);
+  assert.equal(page.nav.properties.get('--nav-x'),'258px');
+  assert.equal(page.nav.properties.get('--nav-width'),'114px');
+  assert.equal(page.frames.size,0);
 });
 
 test('a nyitókép mozgása határolt és visszagörgethető', () => {

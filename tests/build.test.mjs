@@ -5,6 +5,28 @@ import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
+test('a repó és a webes források nem tartalmaznak géphez kötött adatokat', async () => {
+  const root = new URL('../', import.meta.url);
+  const directories = [''];
+  const ignored = new Set(['.git','.preview','dist','node_modules']);
+  const privateData = /\b[A-Z]:[\\/]|file:[\\/]{2,3}|\/(?:Users|home)\/[^\s/]+\/|[\\/]\.codex[\\/]|\b(?:codex-clipboard|exec)-[a-f\d-]{36}/i;
+  for (const directory of directories) {
+    for (const entry of await readdir(new URL(directory,root), { withFileTypes: true })) {
+      const file = `${directory}${entry.name}`;
+      if (entry.isDirectory()) {
+        if (!ignored.has(entry.name)) directories.push(`${file}/`);
+        continue;
+      }
+      if (!entry.isFile() || !/\.(md|html|css|js|mjs|json|ya?ml|txt|svg)$/.test(file)) continue;
+      const content = await readFile(new URL(file,root),'utf8');
+      assert.doesNotMatch(content,privateData,`${file}: géphez kötött adat`);
+      if (file.startsWith('public/')) {
+        assert.doesNotMatch(content,/\b(?:localhost|127\.0\.0\.1)\b|sourceMappingURL|\.preview[\\/]/i,`${file}: fejlesztői adat`);
+      }
+    }
+  }
+});
+
 test('a build gyökércímen és GitHub Pages alútvonalon is működő hivatkozásokat készít', async t => {
   const workspace = await mkdtemp(path.join(tmpdir(), 'sunny-pages-'));
   t.after(async () => {
