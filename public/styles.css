@@ -103,9 +103,9 @@ section { position: relative; }
 .hero-content { position: relative; text-align: center; width: 100%; margin-inline: auto; padding: clamp(3rem, 7svh, 6rem) var(--gutter) var(--space-32); }
 .brand-logo { width: 100%; height: auto; }
 .hero-title { width: min(100%, var(--logo-hero-width), 58svh); margin-inline: auto; }
-.hero-content .eyebrow { margin: var(--space-8) auto 0; color: var(--color-white); font-size: var(--text-small); letter-spacing: .08em; }
+.hero-content .eyebrow { margin: var(--space-8) auto 0; color: var(--color-white); font-family: var(--font-display); font-weight: 400; font-size: var(--text-small); letter-spacing: .08em; }
 .hero-content .eyebrow span { display: block; margin-top: var(--space-2); color: var(--color-on-dark); font-size: var(--text-compact); }
-.hero-description { margin-top: var(--space-4); font: 400 var(--text-ui)/1.5 var(--font-ui); letter-spacing: .04em; }
+.hero-description { margin-top: var(--space-4); font: 400 var(--text-ui)/1.5 var(--font-display); letter-spacing: .04em; }
 
 .about { padding-block: var(--section-space); background: var(--color-mist); }
 .about-layout { display: grid; grid-template-areas: "portrait" "title" "copy"; gap: var(--space-6); align-items: center; padding: var(--space-6); border-radius: var(--radius-section); background: var(--color-paper); }
