@@ -25,6 +25,16 @@ Előnézet: http://localhost:4173. Másik port: `PORT` környezeti változó.
 
 [Cloudflare statikus HTML útmutató](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
 
+## GitHub Pages előnézet
+
+- Megosztható cím: https://rolandui.github.io/Sunny-Spiritual-Soul/.
+- GitHub → Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+- A `.github/workflows/pages.yml` a `master` ágra küldött változások után ellenőriz, tesztel, buildel, majd a `dist/` tartalmát publikálja. Az Actions fülön kézzel is indítható.
+- A workflow a GitHub Pages címéből kapott `BASE_PATH` változóval készíti el a helyi erőforrások és belső hivatkozások útvonalát. A forrásfájlok nem módosulnak.
+- A `BASE_PATH` nélküli `npm run build` továbbra is a Cloudflare Pages-hez használható. A Cloudflare-specifikus `_headers` fájlt a GitHub Pages nem alkalmazza.
+
+[GitHub Pages egyedi workflow útmutató](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
+
 ## Szerkesztés
 
 - Minden szolgáltatásleírás, helyszín, jelentkezési link, csomagár és feltétel: `public/index.html`. A három szolgáltatáscsoport és a két mentorálási részlet natív, helyben lenyitható sorokból áll; JavaScript nélkül is használhatók.

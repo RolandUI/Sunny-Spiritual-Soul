@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 
 const app = await readFile(new URL('../public/app.js',import.meta.url),'utf8');
 
-function setupPage({ reducedMotion = false, height = 900, width = 1440, fontSize = 16, detailPage = false, hash = '', chapter = 'alkalmak', homeSection } = {}) {
+function setupPage({ reducedMotion = false, height = 900, width = 1440, fontSize = 16, detailPage = false, hash = '', chapter = 'alkalmak', homeSection, basePath = '' } = {}) {
   const element = (top = 0, height = 900, href = '') => ({
     bounds: { top,height }, attributes: new Map([['href',href]]), properties: new Map(),
     getBoundingClientRect() { return this.bounds; },
@@ -45,7 +45,7 @@ function setupPage({ reducedMotion = false, height = 900, width = 1440, fontSize
   };
   const document = {
     documentElement: root,body: { dataset: { homeSection } },hidden: false,
-    querySelector: selector => sections[selector],
+    querySelector: selector => selector === '.not-found a' ? element(0,44,`${basePath}/#${homeSection}`) : sections[selector],
     querySelectorAll: selector => selector === '.chapter-nav a' ? links : [],
     getElementById: id => details[id] ?? null,
     addEventListener: (name,listener) => events.set(name,listener),
@@ -253,7 +253,9 @@ test('a korábbi részletoldalak megőrzik a horgonyt a főoldalra irányításk
     ['alkalmak','','/#alkalmak'],['csomagok','','/#csomagok'],
     ['alkalmak','#reiki','/#reiki'],['csomagok','#ritmus','/#ritmus'],
   ]) {
-    const page = setupPage({ detailPage: true,homeSection,hash });
-    assert.equal(page.window.location.replaced,target);
+    for (const basePath of ['', '/Sunny-Spiritual-Soul']) {
+      const page = setupPage({ detailPage: true,homeSection,hash,basePath });
+      assert.equal(page.window.location.replaced,`${basePath}${target}`);
+    }
   }
 });

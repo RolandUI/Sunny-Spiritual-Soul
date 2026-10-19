@@ -1,6 +1,9 @@
 const root = document.documentElement;
 const homeSection = document.body.dataset.homeSection;
-if (homeSection) window.location.replace(`/${window.location.hash || `#${homeSection}`}`);
+if (homeSection) {
+  const homeUrl = document.querySelector('.not-found a').getAttribute('href').split('#')[0];
+  window.location.replace(`${homeUrl}${window.location.hash || `#${homeSection}`}`);
+}
 const hero = document.querySelector('.hero');
 const about = document.querySelector('.about');
 const offerings = document.querySelector('.offerings');
