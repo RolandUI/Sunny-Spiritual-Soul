@@ -13,7 +13,7 @@ Forrás: a felhasználó által 2026. október 19-én csatolt hat kép. Az erede
 | `consultation.png` | Spirituális és életvezetési konzultáció leírása |
 | `packages.png` | Hold – 4, Föld – 8, Pandora – 12 alkalom |
 
-Az időpontokat tartalmazó kép arculati referencia; a rajta szereplő dátumokat a weboldal nem közli foglalható időpontként. A konzultáció és csomagok rövid leírásának forrása az átadott anyag. A teljes logó a nyitóképen és a láblécben az eredeti grafikát használja; a navigációhoz külön, felirat nélküli változat készült.
+Az időpontokat tartalmazó kép arculati referencia; a rajta szereplő dátumokat a weboldal nem közli foglalható időpontként. A konzultáció és csomagok rövid leírásának forrása az átadott anyag. A teljes logó a nyitóképen és a láblécben az eredeti grafikát használja; a navigáció egyszerű, vonalas napikont használ.
 
 ### Eredeti logófájl
 
@@ -22,11 +22,11 @@ Az időpontokat tartalmazó kép arculati referencia; a rajta szereplő dátumok
 - `public/assets/favicon.png`: a teljes logó arányosan kicsinyítve, 64 × 64 px-es petrol (`#154653`) alapon, hogy világos böngészőfelületen is látható maradjon.
 - A teljes logó a nyitóképen és a láblécben szerepel.
 
-### Navigációs logóváltozat
+### Korábbi navigációs logóváltozat
 
 - Forrás: `references/brand/logo-original.png`; a felhasználó kérésére ImageGen képszerkesztéssel készült felirat nélküli, egyszínű változat. Szerkesztett kép: `references/brand/logo-mark.png`.
 - Szerkesztési leírás: csak a meditáló alak tömör sziluettje maradjon, a körbefutó márkanév, a sugarak és minden belső vonal nélkül. Az eredeti testtartás és külső körvonal megtartása, egyszínű petrol kitöltés, átlátszó háttér. A változat a beépített ImageGen képszerkesztővel készült.
-- `public/assets/logo-mark.webp`: 128 × 128 px-es, veszteségmentes WebP-export, Lanczos méretezéssel, megtartott alfa-csatornával. A menü CSS-maszkként használja, így a megjelenő jel pontosan a gomb egyszínű szövegszínét követi.
+- A sziluett forrása megmarad a referenciák között; a navigációban nem használjuk, webes exportja nem része a publikált oldalnak.
 
 ## Szolgáltatások és mentorálás tartalmi forrásai
 
@@ -100,5 +100,5 @@ A fontok a Google Fonts hivatalos készletéből származnak. Helyi latin és la
 - [Cinzel Decorative](https://fonts.google.com/specimen/Cinzel+Decorative), 400. Licenc: `public/assets/fonts/cinzel-OFL.txt`.
 - [Lora](https://fonts.google.com/specimen/Lora), változó font. Licenc: `public/assets/fonts/lora-OFL.txt`.
 - [Manrope](https://fonts.google.com/specimen/Manrope), 400–600. Licenc: `public/assets/fonts/manrope-OFL.txt`.
-- A görgetésjelző kör és a ritka kontúrvonalak saját egyszerű SVG-elemek; nem a márkalogó újrarajzolásai.
+- A napikon, a görgetésjelző kör és a ritka kontúrvonalak saját egyszerű SVG-elemek; nem a márkalogó újrarajzolásai.
 - Az [Instagram](https://icons.getbootstrap.com/icons/instagram/) és [Facebook](https://icons.getbootstrap.com/icons/facebook/) logók a Bootstrap Icons készletéből származnak. A változatlan SVG-útvonalak közös fájlja: `public/assets/social.svg`. MIT-licenc: `public/assets/bootstrap-icons-LICENSE.txt`.
