@@ -25,6 +25,7 @@
   --text-service: clamp(1.625rem, 2.7vw, 2.5rem);
   --logo-hero-width: 30rem;
   --logo-footer-width: 3rem;
+  --logo-nav-size: 2rem;
   --text-count: clamp(2.5rem, 4vw, 3.5rem);
   --text-detail-heading: clamp(1.625rem, 2.5vw, 2rem);
   --text-disclosure: 1.125rem;
@@ -90,7 +91,9 @@ section { position: relative; }
 .chapter-nav.has-indicator a[aria-current] { background: transparent; }
 .chapter-nav a:focus-visible { outline-offset: 2px; }
 .chapter-nav .chapter-home { width: 46px; padding: var(--space-2); }
-.chapter-home svg { width: 30px; fill: none; stroke: currentColor; stroke-width: 1.25; }
+.chapter-home :is(svg, .nav-logo) { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.chapter-home svg { width: calc(var(--logo-nav-size) + var(--space-2)); fill: none; stroke: currentColor; stroke-width: .8; }
+.nav-logo { width: var(--logo-nav-size); height: var(--logo-nav-size); background: currentColor; mask: url('/assets/logo-mark.webp') center / contain no-repeat; }
 .nav-track { opacity: .2; }
 .nav-progress { stroke-dasharray: 87.965; stroke-dashoffset: calc(87.965 * (1 - var(--page-progress))); transform: rotate(-90deg); transform-origin: center; }
 
