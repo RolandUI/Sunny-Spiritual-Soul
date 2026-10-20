@@ -197,7 +197,7 @@ test('navigálás vagy háttérbe kerülés megszakítja a fejléc követését'
 test('minden szolgáltatás statikusan elérhető, egyetlen szintű és csoportosított', async () => {
   const html = await readFile(new URL('../public/index.html',import.meta.url),'utf8');
   const groups = [...html.matchAll(/<section class="service-group"[\s\S]*?<\/section>/g)];
-  assert.deepEqual(groups.map(group => [...group[0].matchAll(/<details class="disclosure" name="szolgaltatasok"/g)].length),[5,3,5]);
+  assert.deepEqual(groups.map(group => [...group[0].matchAll(/<details class="disclosure" name="szolgaltatasok"/g)].length),[5,4,5]);
   for (const group of groups) {
     const descriptions = [...group[0].matchAll(/<details[^>]* id="([^"]+)"[^>]*>([\s\S]*?)<\/details>/g)];
     for (const [,id,description] of descriptions) {
