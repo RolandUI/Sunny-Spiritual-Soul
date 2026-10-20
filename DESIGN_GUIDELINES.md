@@ -12,8 +12,8 @@ Ez a dokumentum a tartós arculati és UX-elveket rögzíti. Csak ezek változá
 
 ## Tipográfia és felületek
 
-- **Cinzel Decorative:** címek és a nyitókép logó alatti szövegei.
-- **Lora:** törzsszöveg és szolgáltatásnevek.
+- **Cinzel Decorative:** címek.
+- **Lora:** törzsszöveg, szolgáltatásnevek és a nyitókép logó alatti szövegei.
 - **Manrope:** navigáció, gombok, árak és rövid kezelőfelületi címkék.
 - A színeket, méreteket, térközöket és lekerekítéseket a közös CSS-tokenekből vedd. Használd újra a meglévő komponenseket.
 - Legyen következetes igazítás, kényelmes sorköz és jól olvasható szövegszélesség. A panelek igazodjanak a tartalomhoz; a szöveget ne zsugorítsd vagy vágd le a helyhiány miatt.
@@ -24,16 +24,17 @@ Ez a dokumentum a tartós arculati és UX-elveket rögzíti. Csak ezek változá
 
 A főoldal rövid áttekintést adjon; a részletek helyben legyenek elérhetők.
 
-1. **Nyitókép:** eredeti logó, név, tevékenység és rövid felsorolás a hullámos háttéren.
-2. **Rólam:** valódi fotó és összefüggő, személyes bemutatkozás egy közös világos panelben. Széles nézetben kiegyensúlyozott kép–szöveg elrendezés, keskeny nézetben egy oszlop. Kapcsolódjon hozzá az alkalmak hivatkozása és a közösségi profilok.
-3. **Alkalmak:** Hangfürdők; Reiki és érintés; Önismeret és rítusok. A szolgáltatásnevek mindig látszanak, a leírás és az ár a saját sor alatt nyílik ki.
+1. **Nyitókép:** eredeti logó, név és rövid felsorolás a hullámos háttéren.
+2. **Rólam:** valódi fotó és összefüggő, személyes bemutatkozás egy közös világos panelben. Széles nézetben kiegyensúlyozott kép–szöveg elrendezés, keskeny nézetben egy oszlop. Kapcsolódjon hozzá a szolgáltatások hivatkozása és a közösségi profilok.
+3. **Szolgáltatások:** Hangfürdők; Reiki és érintés; Önismeret és rítusok. A szolgáltatásnevek mindig látszanak, a leírás és az ár a saját sor alatt nyílik ki.
 4. **Csomagok:** egymás alatti ajánlatok, színes alkalomszámmal és világos tartalmi panellel. A teljes ár és a részletfizetés mindig látható; a folyamat és a részvételi feltételek lenyithatók.
-5. **Kapcsolat:** jól látható Instagram-, Facebook- és e-mail-elérhetőség. A lábléc visszafogott, kiegyensúlyozott és középre igazított legyen.
+5. **Tudnivalók:** önálló, világos szekció a Csomagok után, egyoszlopos, lenyitható kérdésekkel. Ne használja a szolgáltatáskategóriák oldalsó címmezőjét.
+6. **Kapcsolat:** jól látható Instagram-, Facebook- és e-mail-elérhetőség. A lábléc visszafogott, kiegyensúlyozott és középre igazított legyen.
 
 ## Navigáció és működés
 
-- Egyetlen alsó, lebegő kapszulamenü vezessen a fő fejezetekhez: Kezdés, Rólam, Alkalmak, Csomagok, Kapcsolat. A kezdőlapot visszafogott vonalas napikon jelölje.
-- A menü maradjon szellős, amíg van hely; keskeny nézetben fokozatosan tömörödjön. Az aktív háttér folyamatosan csússzon a választott pontra, köztes megállások nélkül.
+- Egyetlen alsó, lebegő kapszulamenü vezessen a fő fejezetekhez: Kezdőlap, Rólam, Szolgáltatások, Csomagok, Tudnivalók, Kapcsolat. A kezdőlapot visszafogott vonalas napikon jelölje.
+- A menü maradjon szellős, amíg van hely; mobilon egy kompakt „Menü” gomb nyisson fölötte egy egyoszlopos panelt az összes fejezettel. Választáskor, Escape-re vagy a menün kívülre lépve a panel záródjon be. A menüpontok és a célfejezetek neve egyezzen meg. Az aktív háttér folyamatosan csússzon a választott pontra, köztes megállások nélkül.
 - A szolgáltatások helyben, egyetlen szintű lenyitással működjenek, modal és külön részletoldal nélkül. Egyszerre egy szolgáltatás legyen nyitva; a csomagok részletei külön csoportot alkossanak.
 - A nyitás és zárás legyen finoman animált. Nyitáskor a fejléc kerüljön a nézet tetejére; a kézi görgetés megszakíthassa az automatikus mozgást. Bezáráskor ne ugorjon el a tartalom.
 - Maradjon természetes az oldal görgetése. Ne legyen belső görgetődoboz, görgetést átvevő effekt vagy folyamatos dekoratív animáció.

@@ -223,3 +223,22 @@ test('a csomag egyeztetése a választható kapcsolatfelvételi csatornákhoz ve
   assert.match(contact,/href="https:\/\/www\.facebook\.com\/profile\.php\?id=61566141987607"/);
   assert.match(contact,/href="mailto:sunnyspiritualsoul@gmail\.com"/);
 });
+
+test('a tudnivalók önálló, JavaScript nélkül is használható kérdéscsoportot alkotnak', async () => {
+  const html = await readFile(new URL('../public/index.html',import.meta.url),'utf8');
+  const faq = html.match(/<section class="faq"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(faq);
+  assert.match(html, /href="#gyik"/);
+  const questions = [...faq.matchAll(/<details([^>]*)>([\s\S]*?)<\/details>/g)];
+  assert.ok(questions.length > 0);
+  for (const [,attributes,content] of questions) {
+    assert.match(attributes, /class="disclosure"/);
+    assert.match(attributes, /name="gyik"/);
+    assert.match(attributes, /id="gyik-[^"]+"/);
+    assert.doesNotMatch(attributes, /\bopen\b/);
+    assert.match(content, /<summary><h3>.+<\/h3>/);
+    assert.match(content, /<div class="disclosure-content">/);
+    assert.match(content, /<p>.+<\/p>/);
+    assert.doesNotMatch(content, /<details/);
+  }
+});
