@@ -220,8 +220,6 @@ section { position: relative; }
 .faq h2 { margin-bottom: var(--space-12); text-align: center; }
 .faq .disclosure-list { display: grid; gap: var(--space-2); overflow: visible; border-radius: 0; background: transparent; }
 .faq .disclosure { overflow: clip; border: 0; border-radius: var(--radius-panel); }
-.contact-faq { display: flex; margin: var(--space-6) auto 0; }
-.contact-faq:hover { color: var(--color-white); }
 
 @media (min-width: 700px) {
   .hero-art { top: var(--space-8); bottom: calc(-1 * var(--space-8)); }
